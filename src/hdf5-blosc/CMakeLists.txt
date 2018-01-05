@@ -11,14 +11,14 @@ option(BUILD_TESTS
 option(BUILD_PLUGIN
     "Build dynamically loadable plugin for HDF5 version > 1.8.11" ON)
 option(BUILD_BLOSC
-        "Build c-blosc from external repo" OFF)
+        "Build c-blosc from external repo" ON)
 if(BUILD_PLUGIN)
     set(PLUGIN_INSTALL_PATH "/usr/local/hdf5/lib/plugin" CACHE PATH 
       "Where to install the dynamic HDF5-plugin")
 endif(BUILD_PLUGIN)
 
 set(BLOSC_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/blosc")
-set(BLOSC_INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/blosc")
+set(BLOSC_INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/../../blosc")
 set(BLOSC_CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${BLOSC_INSTALL_DIR})
 
 message("BLOSC_PREFIX='${BLOSC_PREFIX}'")
@@ -27,8 +27,10 @@ message("BLOSC_CMAKE_ARGS='${BLOSC_CMAKE_ARGS}'")
 message("GIT_EXECUTABLE='${GIT_EXECUTABLE}'")
 
 if(NOT BUILD_BLOSC)
-    Find_Package(blosc REQUIRED)
+  Find_Package(blosc)
+  if(BLOSC_FOUND)
     include_directories(${BLOSC_INCLUDE_DIR})
+  endif()
 endif()
 
 

@@ -35,11 +35,13 @@
 # BLOSC_LIBRARYDIR      Blosc's library directory
 # BLOSC_LIBRARIES        all Blosc libraries
 find_package(PkgConfig)
+
 pkg_check_modules(BLOSC blosc)
 
+message("BLOSC_INSTALL_DIR: ${BLOSC_INSTALL_DIR} ")
 find_path(BLOSC_INCLUDE_DIR blosc.h
-          HINTS ${PC_BLOSC_INCLUDEDIR} ${PC_BLOSC_INCLUDE_DIRS}
-          PATH_SUFFIXES libblosc)
+          HINTS ${BLOSC_INSTALL_DIR} ${PC_BLOSC_INCLUDEDIR} ${PC_BLOSC_INCLUDE_DIRS} 
+          PATH_SUFFIXES include)
 message("BLOSC_INCLUDE: ${BLOSC_INCLUDE_DIR} ")
 find_library(BLOSC_LIBRARY NAMES blosc libblosc
              HINTS ${PC_BLOSC_LIBDIR} ${PC_BLOSC_LIBRARY_DIRS} )
