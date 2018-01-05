@@ -1,0 +1,24 @@
+.PHONY: all libblosc
+
+all: copying $(SHLIB)
+
+$(SHLIB): libblosc
+
+libblosc:
+		cd c-blosc-1.12.1/build && \
+	  cmake --build . --target install
+	  echo "done compiling!"
+
+blosc_filter:
+		cd
+
+copying: libblosc
+	mkdir -p "${R_PACKAGE_DIR}/include"
+	pwd
+	sleep 0.5 &&\
+	cp -L blosc/lib/libblosc*  .
+
+	cp blosc/include/*.h "${R_PACKAGE_DIR}/include"; \
+
+clean:
+		cd c-blosc-1.12.1/build && $(MAKE) -fMakefile clean && cd ..; \
