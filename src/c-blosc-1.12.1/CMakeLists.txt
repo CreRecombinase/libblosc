@@ -100,7 +100,7 @@ option(DEACTIVATE_AVX2
 option(DEACTIVATE_LZ4
     "Do not include support for the LZ4 library." OFF)
 option(DEACTIVATE_SNAPPY
-    "Do not include support for the Snappy library." OFF)
+    "Do not include support for the Snappy library." ON)
 option(DEACTIVATE_ZLIB
     "Do not include support for the Zlib library." OFF)
 option(DEACTIVATE_ZSTD
