@@ -1,21 +1,24 @@
 .PHONY: all libblosc
 
+USER_LIB_DIR = ${R_PACKAGE_DIR}/libs${R_ARCH}/
+
+PKG_LIBS = ${USER_LIB_DIR}libblosc.a
+
 all: copying $(SHLIB)
 
 $(SHLIB): libblosc
 
 libblosc:
-	cd hdf5-blosc/build && \
+	cd c-blosc-1.12.1/build && \
 	  cmake --build . --target install
 	  echo "done compiling!"
 
 copying: libblosc
 	mkdir -p "${R_PACKAGE_DIR}/include"
-	pwd
+	echo ${USER_LIB_DIR}
 	sleep 0.5 &&\
+	cp -L blosc/lib/libblosc.a ${USER_LIB_DIR}/ &&\
 	cp -L blosc/lib/libblosc*  . &&\
-	cp -L blosc_f/lib/*  .  &&\
-	cp blosc_f/include/*.h "${R_PACKAGE_DIR}/include" &&\
 	cp blosc/include/*.h "${R_PACKAGE_DIR}/include";
 clean:
-	cd hdf5-blosc/build && $(MAKE) -fMakefile clean && cd ..; \
+	cd c-blosc-1.12.1/build && $(MAKE) -fMakefile clean && cd ..; \

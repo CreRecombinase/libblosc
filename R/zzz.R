@@ -37,9 +37,9 @@ pkgconfig <-
 
     PKG_LIBS_shared <-
       switch(uname,
-             windows=sprintf('-L"%s%s" -lblosc -lblosc_filter', pth, arch),
+             windows=sprintf('-L"%s%s" -lblosc', pth, arch),
              darwin="-lz",
-             sprintf('-L"%s%s" -Wl,-rpath,"%s%s" -lblosc -lblosc_filter', pth,
+             sprintf('-L"%s%s" -Wl,-rpath,"%s%s" -lblosc', pth,
                      arch, pth, arch))
 
     cat(list(PKG_CFLAGS=PKG_CFLAGS, PKG_LIBS_static=PKG_LIBS_static,
