@@ -1,11 +1,11 @@
 Package: libblosc
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: blosc library for R
+Version: 1.12.1
+Author: Nicholas Knoblauch
+Maintainer: Nicholas Knoblauch <nwknoblauch@gmail.com>
+Description: This package allows for the easy installation of the blosc library
+    using R package management.  The version of the package will track the version of the library
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
