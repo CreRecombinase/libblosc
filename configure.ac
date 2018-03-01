@@ -5,6 +5,11 @@ AC_ARG_WITH([libblosc],
 		[build and use libblosc @<:@no@:>@])],
 	[use_libzbioc=$withval], [use_libblosc=yes])
 
+AC_CHECK_PROG(CMAKE_CHECK, cmake, yes)
+if test x"$CMAKE_CHECK" != x"yes" ; then
+AC_MSG_ERROR([Could not find cmake.])
+fi
+
 if test "${use_libblosc}" = yes; then
   : ${R_HOME=`R RHOME`}
   if test -z "${R_HOME}"; then

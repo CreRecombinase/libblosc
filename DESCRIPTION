@@ -9,3 +9,5 @@ Description: This package allows for the easy installation of the blosc library
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+SystemRequirements: cmake
+
